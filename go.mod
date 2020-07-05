@@ -1,4 +1,4 @@
-module github.com/atomheartother/qtweetgo
+module github.com/atomheartother/qtweet
 
 go 1.14
 

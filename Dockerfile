@@ -1,6 +1,6 @@
 FROM golang:1.14.4 as gobuilder
 
-WORKDIR /go/src/atomheartother/qtweet
+WORKDIR /go/src/qtweet
 
 COPY go.mod .
 COPY go.sum .
@@ -10,4 +10,4 @@ COPY pkg/ pkg/
 
 RUN go build cmd/qtweet.go
 
-CMD ["qtweet"]
+CMD ["./qtweet"]
