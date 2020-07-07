@@ -1,0 +1,44 @@
+version: "3.7"
+
+services:
+  qtweet:
+    build: 
+      context: .
+    image: atomheartother/qtweet
+    restart: on-failure
+    environment:
+      TZ: ${TIMEZONE}
+      PGHOST: postgres
+      PGDATABASE: ${DB_NAME}
+      PGPASSWORD: ${DB_PASSWORD}
+      PGUSER: ${DB_USER}
+      DISCORD_TOKEN: ${DISCORD_TOKEN}
+      TWITTER_API_KEY: ${TWITTER_API_KEY}
+      TWITTER_API_SECRET_KEY: ${TWITTER_API_SECRET_KEY}
+      TWITTER_ACCESS_TOKEN: ${TWITTER_ACCESS_TOKEN}
+      TWITTER_ACCESS_TOKEN_SECRET: ${TWITTER_ACCESS_TOKEN_SECRET}
+      DBL_TOKEN: ${DBL_TOKEN}
+      PREFIX: ${PREFIX}
+      DEFAULT_LANG: ${DEFAULT_LANG}
+      BOT_NAME: ${BOT_NAME}
+      SHARD_SPAWN_DELAY: ${SHARD_SPAWN_DELAY}
+      SHARD_SPAWN_TIMEOUT: ${SHARD_SPAWN_TIMEOUT}
+      VERBOSE: ${VERBOSE}
+      TWITTER_MAX_RECONNECT_DELAY: ${TWITTER_MAX_RECONNECT_DELAY}
+      TWEETS_TIMEOUT: ${TWEETS_TIMEOUT}
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:13-alpine
+    restart: always
+    volumes:
+      - ./db-init:/docker-entrypoint-initdb.d
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+
+volumes:
+  pgdata:

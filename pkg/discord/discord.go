@@ -36,14 +36,18 @@ func Init() {
 // This function will be called (due to AddHandler above) every time a new
 // message is created on any channel that the authenticated bot has access to.
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
+	fmt.Println("New message")
 	// Ignore all messages created by any bot
 	if m.Author.Bot {
 		return
 	}
-	info, err := db.GuildInfo("149624121024577536")
+	var guildid string = "149624121024577536"
+	fmt.Println("Getting guild info...")
+	info, err := db.GuildInfo(&guildid)
+	fmt.Println("Got guild info")
 	if err != nil {
 		log.Fatal("Error getting guild info,", err)
 		return
 	}
-	print(info.ID, info.Prefix, info.Lang)
+	fmt.Println(info.ID, info.Prefix, info.Lang)
 }
