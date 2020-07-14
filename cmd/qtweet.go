@@ -6,11 +6,13 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/atomheartother/qtweet/pkg/config"
 	"github.com/atomheartother/qtweet/pkg/db"
 	"github.com/atomheartother/qtweet/pkg/discord"
 )
 
 func main() {
+	config.InitEnv()
 	err := db.Init()
 	if err != nil {
 		fmt.Println("Couldn't connect to the database,", err)
