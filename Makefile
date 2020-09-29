@@ -8,6 +8,9 @@ DEPS = $(wildcard *.go) ${wildcard **/*.go}
 
 all: $(OUT)
 
+test:
+	go test ./...
+
 run: all
 	./$(OUT)
 

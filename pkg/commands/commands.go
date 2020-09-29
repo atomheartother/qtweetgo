@@ -17,6 +17,7 @@ type Command struct {
 }
 
 // Parse will parse a string and determine whether or not it is a recognizable command
+// A return value of nil indicates it isn't a valid command
 func Parse(s string) *Command {
 	res := config.CommandRegexp.FindAllStringSubmatch(s, -1)
 	if len(res) != 1 {
