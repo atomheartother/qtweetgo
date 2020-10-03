@@ -1,8 +1,6 @@
 package commands
 
 import (
-	"fmt"
-
 	"github.com/atomheartother/qtweet/pkg/config"
 )
 
@@ -41,6 +39,5 @@ func Parse(s string) *Command {
 			parsedCommand.options = append(parsedCommand.options, [2]string{match[1], match[4]})
 		}
 	}
-	fmt.Printf("cmd: %s\nargs: %q\nflags: %q\noptions: %q\n", parsedCommand.cmd, parsedCommand.args, parsedCommand.flags, parsedCommand.options)
 	return parsedCommand
 }
